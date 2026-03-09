@@ -1,0 +1,10 @@
+# Pasta de dependências (muito pesada, não deve subir)
+node_modules/
+
+# Pasta de autenticação (CONTÉM SEU LOGIN, NUNCA SUBIR)
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Arquivos de sistema e logs
+npm-debug.log*
+.DS_Store
