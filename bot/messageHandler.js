@@ -1,6 +1,7 @@
 const parseCommand = require('../utils/commandParser')
-const taskCommand = require('../commands/tasks')
-const listCommand = require('../commands/list')
+const loadCommands = require('../loaders/commandLoader')
+
+const commands = loadCommands()
 
 async function handleMessage(message) {
     if(message.fromMe) return;
@@ -9,20 +10,14 @@ async function handleMessage(message) {
 
     if(!parsed) return;
 
-    const {command, args } = parsed
+    const {command, args } = parsed;
 
-    switch(command) {
-        case 'task':
-            await taskCommand.execute(message, args)
-            break;
-        
-        case 'list':
-            await listCommand.execute(message, args)
-            break;
-        
-        default:
-            message.reply('Unknown command. Please use "task" or "list".')
-    }
+    const cmd = commands[command];
+
+    if(!cmd) console.log(`Command ${command} not found!`);
+
+    cmd.execute(message, args);
+
 
 }
 

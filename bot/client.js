@@ -4,6 +4,9 @@ const qrcode = require('qrcode-terminal');
 
 const client = new Client({
     authStrategy: new LocalAuth(),
+    puppeteer: {
+        headless : false,
+    }
    });
 
 // Evento para indicar que o cliente está pronto
