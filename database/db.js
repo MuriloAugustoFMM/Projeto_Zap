@@ -1,5 +1,5 @@
 const db = {
-    tasks: []
+    workspaces:  {}
 };
 
 module.exports = db;

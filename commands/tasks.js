@@ -7,7 +7,13 @@ module.exports = {
 
     async execute(message, args) {
 
-    const task = await taskService.createTask(args, message.author);
+    const workspaceId = message.from;
+
+    const task = await taskService.createTask(
+        workspaceId,
+        args,
+        message.author);
+
     message.reply(`Task created: ${task.text}`);   
       
 }

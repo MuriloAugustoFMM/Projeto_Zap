@@ -6,8 +6,10 @@ module.exports = {
     name : "list",
 
     async execute(message) {
-    
-        const tasks = taskService.getTasks();
+
+        const workspaceId = message.from;
+
+        const tasks = taskService.getTasks(workspaceId);
 
         if(tasks.length === 0) {
             message.reply('No tasks found.');
