@@ -1,8 +1,7 @@
-const client = require('./bot/client');
-const handleMessage = require('./bot/messageHandler');
+const client = require('./bot/client')
 
-client.on('message', async (message) =>{
-    await handleMessage(message)
-})
+
+
+
 
 client.initialize()
