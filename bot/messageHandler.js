@@ -1,9 +1,13 @@
 const messageParser = require('../utils/messageParser')
+const pdf = require('../commands/pdf')
 
-function messageHandler(message){
+async function  messageHandler(message){
     console.log("mensagem recebida")
+    (command,body) = messageParser(message)
 
-    console.log(`COMANDOS: ${messageParser(message)}`)
-
-
+    switch(command){
+        case 'pdf':
+            await pdf.generate_pdf(body)
+    }
+    
 }
