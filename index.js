@@ -88,6 +88,23 @@ app.put('/task/:id', async (req, res) => {
     }
 });
 
+app.delete('/task/:id', async (req,res) => {
+    
+    const taskId = req.params.id;
+
+    try{
+        const response = await client.query(
+            'DELETE FROM tasks WHERE id = $1',
+            [taskId]
+        )
+
+        res.status(204).send('OK');
+    }
+    catch(err){
+        res.status(500).send('falha no servidor')
+    }
+})
+
 
 app.listen(3000, () => console.log('API rodando na porta 3000'));
 

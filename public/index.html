@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    
     <link rel="stylesheet" type="text/css" href="base.css">
     <link rel="stylesheet" type="text/css" href="layout.css">
     <link rel="stylesheet" type="text/css" href="components.css">
@@ -13,6 +13,7 @@
 </head>
 <body>
     <div class="kanban">
+        <button id="add-button">+</button>
         <div class ='column' ondrop="dropFunc(event)" id="todo">
             <h3>A fazer <span class="count">0</span> </h3>
             <div class="task-list"></div>
@@ -31,5 +32,6 @@
     <script src="renderTasks.js"></script>
     <script src="moverTask.js"></script>
     <script src="updateStatusBD.js"></script>
+    <script src="actionsButtons.js"></script>
 </body>
 </html>

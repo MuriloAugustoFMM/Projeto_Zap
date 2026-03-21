@@ -57,18 +57,18 @@ async function updateHTML(){
                     <p>${task.descricao}</p>
                 </div>
                 <div class="card-footer">
-                    <button onclick="//excluir()">Excluir</button>
-                    <button onclick="//editar()">Editar</button>
+                    <button id="button-del" onclick="delTask(${task.id})">Excluir</button>
+                    <button id="button-edit" onclick="editTask(${task.id})">Editar</button>
                 </div>
             </div>
         `;
 
         card.addEventListener('dragstart', (e) =>{
 
-            //e.preventDefault();
             console.log('dragstart')
             e.dataTransfer.setData('text', task.id)
         })
+
 
         card.addEventListener('dragleave', ()=>{
 
