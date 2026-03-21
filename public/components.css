@@ -1,0 +1,57 @@
+/* --- CARD --- */
+.card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(210,230,255,0.85) 100%);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.card-header {
+    font-size: 0.8rem;
+    color: #0078d7;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-body p {
+    color: #005696;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* --- BOTÕES LADO A LADO --- */
+.card-footer {
+    display: flex; /* Alinha os itens em linha */
+    gap: 10px;     /* Espaço entre os botões */
+    margin-top: 10px;
+}
+
+.card button {
+    flex: 1; /* Faz os dois botões terem o mesmo tamanho */
+    padding: 10px 5px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #2af598 0%, #009efd 100%);
+    color: white;
+    font-weight: 800;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 158, 253, 0.3);
+    transition: all 0.2s ease;
+}
+
+.card button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}

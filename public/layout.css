@@ -1,0 +1,47 @@
+.kanban {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    height: 100vh;
+    justify-content: center;
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.column h3 {
+    text-align: center;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    padding: 12px;
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+    border-radius: 15px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.task-list {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+    .kanban { flex-direction: column; align-items: center; overflow-y: auto; }
+    .column { width: 100%; max-width: 500px; }
+}

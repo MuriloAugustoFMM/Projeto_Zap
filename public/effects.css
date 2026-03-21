@@ -1,0 +1,13 @@
+/* Quando o card está sendo arrastado */
+.card.dragging {
+    opacity: 0.5;
+    transform: scale(0.9);
+    filter: grayscale(0.5);
+}
+
+/* Quando a coluna detecta um card sobre ela */
+.column.drag-over {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}

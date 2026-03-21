@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at top left, #4facfe 0%, #00f2fe 30%, #0078d7 70%, #003a66 100%);
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    color: #000;
+    overflow-x: hidden;
+}
+
+/* Efeito decorativo de fundo */
+body::before {
+    content: '○';
+    position: fixed;
+    font-size: 300px;
+    color: rgba(255,255,255,0.05);
+    top: -100px;
+    right: -50px;
+    z-index: -1;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="base.css">
+    <link rel="stylesheet" type="text/css" href="layout.css">
+    <link rel="stylesheet" type="text/css" href="components.css">
+    <link rel="stylesheet" type="text/css" href="effects.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="kanban">
+        <div class ='column' ondrop="dropFunc(event)" id="todo">
+            <h3>A fazer <span class="count">0</span> </h3>
+            <div class="task-list"></div>
+        </div>
+
+        <div class="column" ondrop="dropFunc(event)" id="doing">
+            <h3>Em andamento <span class="count">0</span></h3>
+            <div class="task-list"></div>
+        </div>
+
+        <div class="column" ondrop="dropFunc(event)" id="done">
+            <h3>Concluído <span class="count">0</span></h3>
+            <div class="task-list"></div>
+        </div>
+    </div>
+    <script src="renderTasks.js"></script>
+    <script src="moverTask.js"></script>
+    <script src="updateStatusBD.js"></script>
+</body>
+</html>
