@@ -20,10 +20,14 @@ async function updateHTML(){
 
 
     const colunas = {
-        'todo' : document.querySelector('#todo','.task-list'),
-        'doing' : document.querySelector('#doing','.task-list'),
-        'done' : document.querySelector('#done','.task-list')
+        'todo' : document.querySelector('#todo .task-list'),
+        'doing' : document.querySelector('#doing .task-list'),
+        'done' : document.querySelector('#done .task-list')
     };
+
+    colunas.todo.innerHTML = "";
+    colunas.doing.innerHTML = "";
+    colunas.done.innerHTML = "";
 
     colunas['todo'].innerHTML = `
             <h3>A fazer <span class="count">0</span> </h3>
@@ -58,7 +62,7 @@ async function updateHTML(){
                 </div>
                 <div class="card-footer">
                     <button id="button-del" onclick="delTask(${task.id})">Excluir</button>
-                    <button id="button-edit" onclick="editTask(${task.id})">Editar</button>
+                    <button id="button-edit" onclick="openModal(${task.id})">Editar</button>
                 </div>
             </div>
         `;
@@ -89,9 +93,9 @@ async function updateHTML(){
 
 }
 
+updateHTML(getTasks())
 
 
 
 
-updateHTML(getTasks());
 

@@ -4,34 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="base.css">
-    <link rel="stylesheet" type="text/css" href="layout.css">
-    <link rel="stylesheet" type="text/css" href="components.css">
-    <link rel="stylesheet" type="text/css" href="effects.css">
+    <link rel="stylesheet" type="text/css" href="./estilos/base.css">
+    <link rel="stylesheet" type="text/css" href="./estilos/layout.css">
+    <link rel="stylesheet" type="text/css" href="./estilos/components.css">
+    <link rel="stylesheet" type="text/css" href="./estilos/effects.css">
+    <link rel="stylesheet" type="text/css" href="./estilos/modal.css">
 
     <title>Document</title>
 </head>
 <body>
+
+
+
     <div class="kanban">
-        <button id="add-button">+</button>
+        <button id="add-button" onclick="openModal()">+</button>
         <div class ='column' ondrop="dropFunc(event)" id="todo">
-            <h3>A fazer <span class="count">0</span> </h3>
             <div class="task-list"></div>
         </div>
 
         <div class="column" ondrop="dropFunc(event)" id="doing">
-            <h3>Em andamento <span class="count">0</span></h3>
             <div class="task-list"></div>
         </div>
 
         <div class="column" ondrop="dropFunc(event)" id="done">
-            <h3>Concluído <span class="count">0</span></h3>
             <div class="task-list"></div>
         </div>
     </div>
-    <script src="renderTasks.js"></script>
-    <script src="moverTask.js"></script>
-    <script src="updateStatusBD.js"></script>
-    <script src="actionsButtons.js"></script>
+
+
+
+
+
+    <div id="modal-container" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modal-title">Nova Task</h2>
+
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+
+                <div class="input-group">
+                    <label>Titulo</label>
+                    <input type="text" id="task-titulo" placeholder="O que precisa ser feito?">
+                </div>
+
+                <div class="input-group">
+                    <label>Descrição</label>
+                    <textarea id="task-descricao" rows="4" placeholder="Detalhes da tarefa"></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancelar" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" id="btn-salvar">Salvar</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <script src="./scripts/renderTasks.js"></script>
+    <script src="./scripts/moverTask.js"></script>
+    <script src="./scripts/updateStatusBD.js"></script>
+    <script src="./scripts/actionsButtons.js"></script>
+    <script src="./scripts/modal.js"></script>
 </body>
 </html>

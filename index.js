@@ -60,11 +60,22 @@ app.get('/api/tasks', async (req,res) =>{
 })
 
 
-app.get('/', (req, res) => {
-    
+app.get('/task/:id', async (req,res) =>{
 
-    
-    res.send('API está rodando 🚀')
+    const taskId = req.params.id
+    console.log(taskId)
+    try{
+        const result = await client.query(
+            'SELECT * FROM tasks WHERE id = $1',
+            [taskId]
+        )
+        res.json(result.rows[0]);
+
+    }
+    catch(err){
+        res.status(500).send("Erro ao tentar obter task")
+    }
+
 })
 
 app.put('/task/:id', async (req, res) => {
@@ -78,8 +89,6 @@ app.put('/task/:id', async (req, res) => {
             [status, id]
         );
 
-        // --- O QUE FALTOU: ENVIAR A RESPOSTA ---
-        // Sem isso, o fetch no frontend fica esperando para sempre (ou dá 404/timeout)
         res.status(200).json({ message: "Atualizado com sucesso!", id, status });
 
     } catch (err) {
