@@ -3,10 +3,9 @@ const form = document.getElementById("task-form");
 
 async function openModal(id=""){
 
+    form.reset();
 
     document.querySelector(".modal-content", "#task-id").value = id;
-
-    form.reset();
 
     if(id){
         resp = await fetch(`http://localhost:3000/task/${id}`)
