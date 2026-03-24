@@ -1,5 +1,5 @@
 async function delTask(taskId) {
-    console.log(taskId)
+    //console.log(taskId)
     deleteTaskDB(taskId);
 
     updateHTML();
@@ -7,6 +7,6 @@ async function delTask(taskId) {
 
 }
 
-async function editTask(taskId) {
-    
+async function editTask(taskId="") {
+    openModal()
 }

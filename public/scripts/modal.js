@@ -11,7 +11,7 @@ async function openModal(id=""){
     if(id){
         resp = await fetch(`http://localhost:3000/task/${id}`)
         task = await resp.json();
-        console.log(task)
+        //console.log(task)
         document.querySelector(".modal-content #task-id").value = task.id;
         document.querySelector(".modal-content #task-titulo").value = task.titulo;
         document.querySelector(".modal-content #task-descricao").value = task.descricao;

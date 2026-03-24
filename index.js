@@ -1,37 +1,5 @@
 const client = require('./database/connection')
-const readLine = require('readline')
 const express = require('express')
-const cors = require('cors')
-const path = require('path')
-
-let index = 0
-
-const rl = readLine.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: true
-})
-
-rl.on('line', async (message) =>{
-    if(message == 'task'){
-        const result = await createTask()
-        console.log(result.rows[0])
-    }
-})
-
-async function createTask(){
-
-
-    const result = await client.query(
-        'INSERT INTO tasks (text) VALUES ($1) RETURNING *',
-        [index]
-    )
-    index++;
-
-    return result
-}
-
-
 
 const app = express();
 app.use(express.static('public'))
@@ -82,8 +50,11 @@ app.put('/task/:id', async (req, res) => {
 
     const id = req.params.id;
     const status = req.body.status
-
-    try {
+    const titulo = req.body.title;
+    const description = req.body.desc; 
+    
+    if(! titulo || !description){
+        try {
         const result = await client.query(
             'UPDATE tasks SET status = $1 WHERE id = $2',
             [status, id]
@@ -91,11 +62,49 @@ app.put('/task/:id', async (req, res) => {
 
         res.status(200).json({ message: "Atualizado com sucesso!", id, status });
 
-    } catch (err) {
-        console.error("Erro no Banco:", err);
-        res.status(500).json({ error: "Erro ao realizar atualização no banco de dados" });
+        } catch (err) {
+            console.error("Erro no Banco:", err);
+            res.status(500).json({ error: "Erro ao realizar atualização no banco de dados" });
+        }
+            return;
     }
+
+        try {
+        const result = await client.query(
+            'UPDATE tasks SET status = $1, titulo = $2, descricao = $3 WHERE id = $4',
+            [status, titulo, description, id]
+        );
+
+        res.status(200).json({ message: "Atualizado com sucesso!", id, status });
+
+        } catch (err) {
+            console.error("Erro no Banco:", err);
+            res.status(500).json({ error: "Erro ao realizar atualização no banco de dados" });
+        }
+            return;
+
+    
 });
+
+app.post('/task', async (req, res) => {
+
+    console.log("CHAMANDO POST")
+    const taskTitle = req.body.title;
+    const taskDesc =  req.body.desc;
+    const status = req.body.status;
+
+    try{
+        const result = await client.query(
+            'INSERT INTO tasks (descricao, titulo, status) VALUES ($1,$2,$3) RETURNING *',
+            [taskDesc,taskTitle,status]
+        )
+
+        res.status(200).send(result);
+    }
+    catch(err){
+        res.status(500).send("Erro ao criar dados");
+    }
+})
 
 app.delete('/task/:id', async (req,res) => {
     

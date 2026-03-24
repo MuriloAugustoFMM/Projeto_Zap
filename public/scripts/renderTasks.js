@@ -20,26 +20,26 @@ async function updateHTML(){
 
 
     const colunas = {
-        'todo' : document.querySelector('#todo .task-list'),
-        'doing' : document.querySelector('#doing .task-list'),
-        'done' : document.querySelector('#done .task-list')
+        'todo' : document.querySelector('#todo '),
+        'doing' : document.querySelector('#doing '),
+        'done' : document.querySelector('#done ')
     };
 
     colunas.todo.innerHTML = "";
     colunas.doing.innerHTML = "";
-    colunas.done.innerHTML = "";
+    colunas.done.innerHTML = "";    
 
     colunas['todo'].innerHTML = `
-            <h3>A fazer <span class="count">0</span> </h3>
+            <h3>A fazer</h3>
             <div class="task-list"></div>
             `;
     
     colunas['doing'].innerHTML = `
-            <h3>Em andamento <span class="count">0</span> </h3>
+            <h3>Em andamento</h3>
             <div class="task-list"></div>
             `;
     colunas['done'].innerHTML = `
-            <h3>Concluído<span class="count">0</span> </h3>
+            <h3>Concluído</h3>
             <div class="task-list"></div>`;
 
     tasks.forEach(task => {
@@ -69,22 +69,8 @@ async function updateHTML(){
 
         card.addEventListener('dragstart', (e) =>{
 
-            console.log('dragstart')
             e.dataTransfer.setData('text', task.id)
         })
-
-
-        card.addEventListener('dragleave', ()=>{
-
-            console.log('leave')
-        })
-
-        card.addEventListener('dragover', () =>{
-            console.log('dragover')
-        })
-
-
-        //card.addEventListener('')
 
         const status = task.status;
 
