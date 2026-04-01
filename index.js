@@ -1,4 +1,3 @@
-const client = require('./database/connection')
 const express = require('express')
 
 const app = express();
@@ -49,7 +48,9 @@ app.get('/task/:id', async (req,res) =>{
 app.put('/task/:id', async (req, res) => {
 
     const id = req.params.id;
-    const status = req.body.status
+    console.log(req.body.status)
+    const status = req.body.status ? req.body.status : "todo";
+    console.log(status)
     const titulo = req.body.title;
     const description = req.body.desc; 
     

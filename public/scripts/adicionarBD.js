@@ -3,12 +3,11 @@ async function criarTask(){
     const titulo = document.getElementById("task-titulo").value
     const descricao = document.getElementById("task-descricao").value
     const idTask = document.getElementById("task-id").value
-    console.log(titulo, descricao)
+    
 
     if(!idTask){
 
         try{
-            console.log("nova task")
             const response = await fetch('http://localhost:3000/task', 
             {
                 method : 'POST',
@@ -43,5 +42,5 @@ async function criarTask(){
     
     
     closeModal();
-    updateHTML();
+    renderTasks();
 }
