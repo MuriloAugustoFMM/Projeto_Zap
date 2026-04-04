@@ -1,3 +1,5 @@
+
+
 function getColumns(){
 
     // seleciona as colunas do documento
@@ -28,6 +30,8 @@ function getColumns(){
 
     return colunas;
 }
+
+
 
 function createCards(tasks){
 
@@ -74,30 +78,24 @@ function createCards(tasks){
     return cards;
 }
 
-async function renderTasks(){
 
-    // coleta as tasks por em json
-    const tasks = await getTasks();
+const ui = {
 
-    // coleta o dicionario de colunas ja formatadas
-    const colunas = getColumns();
+    renderTasks : async () => {
 
-    // coleta os cards já formatados
-    const cards = createCards(tasks);
+        // coleta as tasks por em json
+        const tasks = await getTasks();
 
-    cards.forEach((card) =>{
-        const status = card.dataset.status;
-        colunas[status].appendChild(card);
-    });
+        // coleta o dicionario de colunas ja formatadas
+        const colunas = getColumns();
 
+        // coleta os cards já formatados
+        const cards = createCards(tasks);
+
+        cards.forEach((card) =>{
+            const status = card.dataset.status;
+            colunas[status].appendChild(card);
+        });
+
+    }
 }
-
-renderTasks()
-
-
-
-
-
-
-
-

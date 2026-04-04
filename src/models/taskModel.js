@@ -1,71 +1,114 @@
-const {Pool} = require('pg')
+const pool = require('../config/db');
 
-const pool = new Pool({
-    host: 'localhost',
-    port: '5432',
-    user: 'postgres',
-    password: 'postgres'
-})
+const taskModel = {
+
+    getTasks: async () => {
+            console.log('coletando tasks...')
+        try{
+
+            const response =await pool.query(
+                'SELECT * FROM tasks'
+            );
+
+            console.log(response.rows)
+            return response.rows;
+
+        }catch(err){
+
+            console.log(err)
+        }
+    },
 
 
-try{
+    getTask: async (taskId) => {
+        // Seleciona uma taks de id especifico
+        
+        try{
+            const response = await pool.query(
+                'SELECT * FROM tasks WHERE id = $1',
+                [taskId]
+            );
 
-    pool.connect()
-    console.log('conectado com sucesso')
+            console.log(response.rows)
+            return response
 
-} catch(err) {console.log(err)}
+        }catch(err){
+            console.log(err)
+        }
+    },
 
 
-// Seleciona todas as tasks
-async function getTasks(){
+    updateTask: async (taskId,coluna='titulo',conteudo='',status='') => {
+        // Atualiza uma task specifica
+        const colunasPermitidas = ['titulo','descricao','status'];
 
-    try{
+        if(!colunasPermitidas.includes(coluna)){
+            console.log('Coluna não autorizada');
+            return;
+        }
+        let query = `UPDATE tasks SET ${coluna} = $1 WHERE id = $2`
+        let values = [conteudo,taskId]
 
-        const response =await pool.query(
-            'SELECT * FROM tasks'
-        );
+        if(status){
+            query = `UPDATE tasks SET status = $1, ${coluna} = $2 WHERE id = $3`
+            values = [status,conteudo,taskId];
+        }
+        
+        try{
 
-        console.log(response.rows)
-        return response
+            const response = await pool.query(query,values)
 
-    }catch(err){
+            console.log('alterado com sucesso', response)
 
-        console.log(err)
+        }catch(err){
+            console.log('erro ao tentar atualizar banco de dados', err);
+
+        }
+
+    },
+
+    createTask: async (titulo,descricao) => {
+        // Cria uma task com status padrão todo
+        try{
+            const response = await pool.query(
+                'INSERT INTO tasks (titulo,descricao,status) VALUES ($1,$2,$3)',
+                [titulo,descricao,'todo']
+            )
+
+            console.log('Task criada com sucesso');
+        }catch(err){
+            console.log(`Erro ao tentar criar tarefa ${err}`);
+        }
+        
+    },
+
+    deleteTask: async (taskId) =>{
+        
+        try{
+            const response = await pool.query(
+                'DELETE FROM tasks WHERE id = $1',
+                [taskId]
+            )
+            console.log('Tarefa deletada com sucesso');
+        }catch(err){
+            console.log(`Erro ao deletar task ${err}`);
+        }
     }
+
+
 }
 
-// Seleciona um id especifico
-async function getTask(taskId){
 
-    try{
-        const response = await pool.query(
-            'SELECT * FROM tasks WHERE id = $1',
-            [taskId]
-        );
-
-        console.log(response.rows)
-        return response
-
-    }catch(err){
-        console.log(err)
-    }
-}
-
-// Atualiza uma task specifica
-async function updateTasks(taskId){
-
-    try{
-        const response = await pool.query(
-            'INSERT INTO tasks WHERE '
-        )
+module.exports = taskModel;
 
 
-    }catch(err){
 
 
-    }
 
-}
+
+
+
+
 
 
 
