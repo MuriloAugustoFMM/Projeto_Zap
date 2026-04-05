@@ -4,27 +4,30 @@ const cols = {
     'doing' : document.querySelector('#doing'),
     'done' : document.querySelector('#done')
 };
-
- // define o html basal das colunas
-cols['todo'].innerHTML = `
-        <h3>A fazer</h3>
-        <div class="task-list"></div>
-        `;
-        
-cols['doing'].innerHTML = `
-        <h3>Em andamento</h3>
-        <div class="task-list"></div>
-        `;
-cols['done'].innerHTML = `
-        <h3>Concluído</h3>
-        <div class="task-list"></div>`;
-
            
 
-
-
 export const uiColumn = {
-    colunas: cols,
+    getColumns: () =>{
+            //reseta as colunas
+        cols['todo'].innerHTML = '';
+        cols['doing'].innerHTML = '';
+        cols['done'].innerHTML = '';
+
+        // define o html basal das colunas
+        cols['todo'].innerHTML = `
+                <h3>A fazer</h3>
+                <div class="task-list"></div>
+                `;
+                
+        cols['doing'].innerHTML = `
+                <h3>Em andamento</h3>
+                <div class="task-list"></div>
+                `;
+        cols['done'].innerHTML = `
+                <h3>Concluído</h3>
+                <div class="task-list"></div>`;
+        return cols;
+    },
     setDragDrop: (moverTask) => {
         cols['todo'].addEventListener('drop', (e) => {
 

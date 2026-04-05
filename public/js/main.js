@@ -21,7 +21,7 @@ export async function moverTask(taskId,status){
 async function renderizarCards() {
     
     const tasks = await taskService.getTasks();
-    const colunas = uiColumn.colunas;
+    const colunas = uiColumn.getColumns();
     uiCard.renderTasks(tasks,colunas);
 }
 

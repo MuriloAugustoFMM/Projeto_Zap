@@ -3,14 +3,13 @@ const pool = require('../config/db');
 const taskModel = {
 
     getTasks: async () => {
-            console.log('coletando tasks...')
+
         try{
 
             const response =await pool.query(
                 'SELECT * FROM tasks'
             );
 
-            console.log(response.rows)
             return response.rows;
 
         }catch(err){

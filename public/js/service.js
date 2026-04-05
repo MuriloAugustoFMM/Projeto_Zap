@@ -49,15 +49,18 @@ export const taskService ={
     updateTaskStatus: async (taskId,status) => {
 
         try{
-            console.log(taskId,status)
-            const response = await fetch(`${API_URL}/${taskId}/status`, {
-                method: 'patch',
-                headers: {'Content-Type' : 'application/json'},
+            if(!taskId || !status){
+                console.log('status ou task indefinidos');
+                return
+            }
 
-                body: JSON.stringify({status})
+            const response = await fetch(`${API_URL}/${taskId}/status`, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ status: String(status).trim() })
             });
 
-
+            return await response.json();   
         } catch(err){
             console.log(err);
         }
