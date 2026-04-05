@@ -38,21 +38,17 @@ const taskModel = {
     },
 
 
-    updateTask: async (taskId,coluna='titulo',conteudo='',status='') => {
+    updateTask: async (taskId,coluna='titulo',conteudo='#',) => {
         // Atualiza uma task specifica
-        const colunasPermitidas = ['titulo','descricao','status'];
+        const colunasPermitidas = ['titulo','descricao'];
 
         if(!colunasPermitidas.includes(coluna)){
             console.log('Coluna não autorizada');
             return;
         }
-        let query = `UPDATE tasks SET ${coluna} = $1 WHERE id = $2`
-        let values = [conteudo,taskId]
 
-        if(status){
-            query = `UPDATE tasks SET status = $1, ${coluna} = $2 WHERE id = $3`
-            values = [status,conteudo,taskId];
-        }
+        const query = `UPDATE tasks SET ${coluna} = $1 WHERE id = $2`
+        const values = [conteudo,taskId]
         
         try{
 
@@ -63,6 +59,20 @@ const taskModel = {
         }catch(err){
             console.log('erro ao tentar atualizar banco de dados', err);
 
+        }
+
+    },
+
+    updateStatusTask: async (taskId, status) => {
+
+        try{
+            const response = await pool.query(
+                'UPDATE tasks SET status = $1 WHERE id = $2',
+                [status,taskId]
+            )
+            console.log('Status atualizado com sucesso');
+        } catch(err){
+            console.log('Erro ao atualizar status');
         }
 
     },

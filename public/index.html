@@ -18,15 +18,15 @@
 
     <div class="kanban">
         <button id="add-button" onclick="openModalNew()">+</button>
-        <div class ='column' ondrop="dropFunc(event)" id="todo">
+        <div class ='column' id="todo">
             
         </div>
 
-        <div class="column" ondrop="dropFunc(event)" id="doing">
+        <div class="column" id="doing">
             
         </div>
 
-        <div class="column" ondrop="dropFunc(event)" id="done">
+        <div class="column" id="done">
             
         </div>
     </div>
@@ -60,12 +60,9 @@
             </form>
         </div>
     </div>
-    <script src="./scripts/renderTasks.js"></script>
-    <script src="./scripts/moverTask.js"></script>
-    <script src="./scripts/updateStatusBD.js"></script>
     <script src="./scripts/actionsButtons.js"></script>
     <script src="./scripts/modal.js"></script>
     <script src="./scripts/adicionarBD.js"></script>
-    <script src="./scripts/js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>

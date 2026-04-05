@@ -1,39 +1,6 @@
 
 
-function getColumns(){
-
-    // seleciona as colunas do documento
-    const colunas = {
-        'todo' : document.querySelector('#todo '),
-        'doing' : document.querySelector('#doing '),
-        'done' : document.querySelector('#done ')
-    };
-
-    // redefine o html das colunas
-    colunas.todo.innerHTML = "";
-    colunas.doing.innerHTML = "";
-    colunas.done.innerHTML = "";   
-
-     // define o html basal das colunas
-    colunas['todo'].innerHTML = `
-            <h3>A fazer</h3>
-            <div class="task-list"></div>
-            `;
-    
-    colunas['doing'].innerHTML = `
-            <h3>Em andamento</h3>
-            <div class="task-list"></div>
-            `;
-    colunas['done'].innerHTML = `
-            <h3>Concluído</h3>
-            <div class="task-list"></div>`;
-
-    return colunas;
-}
-
-
-
-function createCards(tasks){
+function createCards(tasks,columns){
 
     const cards = [];
 
@@ -65,8 +32,8 @@ function createCards(tasks){
         `;
 
         card.addEventListener('dragstart', (e) =>{
-
-            e.dataTransfer.setData('text', task.id)
+            
+            e.dataTransfer.setData('text/plain', task.id)
         });
         
         
@@ -79,16 +46,11 @@ function createCards(tasks){
 }
 
 
-const ui = {
 
-    renderTasks : async () => {
+export const uiCard = {
 
-        // coleta as tasks por em json
-        const tasks = await getTasks();
-
-        // coleta o dicionario de colunas ja formatadas
-        const colunas = getColumns();
-
+    renderTasks : async (tasks, colunas) => {
+      
         // coleta os cards já formatados
         const cards = createCards(tasks);
 
@@ -98,4 +60,6 @@ const ui = {
         });
 
     }
+
+
 }

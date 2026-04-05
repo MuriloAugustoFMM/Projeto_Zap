@@ -48,15 +48,32 @@ const taskController = {
             const taskId = req.params.id;
             const campo = req.body.campo;
             const conteudo = req.body.conteudo;
-            const status = req.body.status ? req.body.status : '';
 
-            const result = await taskModel.updateTask(taskId,campo,conteudo,status);
+            const result = await taskModel.updateTask(taskId,campo,conteudo);
 
             return res.json(result);
         } catch(err){
             return res.status(500).json({error: 'erro ao tentar atualizar task'})
         }
 
+    },
+
+    updateStatusTask: async (req,res) => {
+        try{
+            const taskId = req.params.id;
+            const status = req.body.status;
+
+            console.log("--> Chegou no Controller!"); // Se isso não aparecer, o erro é na ROTA
+            console.log("ID:", taskId, "Status:", status);
+
+            const result = await taskModel.updateStatusTask(taskId,status);
+            
+            console.log('Task atualizada com sucesso')
+            return res.json(result);
+
+        } catch(err){
+            res.status(500).json({error : 'erro ao tentar atualizar status'});
+        }
     },
 
     deleteTask: async (req,res) => {
