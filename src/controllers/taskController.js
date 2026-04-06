@@ -43,18 +43,19 @@ const taskController = {
     },
 
     updateTask: async (req,res) => {
-
+        //implementar só um campo...
         try{
             const taskId = req.params.id;
-            const campo = req.body.campo;
-            const conteudo = req.body.conteudo;
-
-            const result = await taskModel.updateTask(taskId,campo,conteudo);
-
-            return res.json(result);
+            const titulo = req.body.titulo;
+            const descricao = req.body.descricao;
+            const result = await taskModel.updateTask(taskId,titulo,descricao);
+            
         } catch(err){
             return res.status(500).json({error: 'erro ao tentar atualizar task'})
         }
+        console.log('Task atualizada com sucesso');
+        return 'sucesso';
+
 
     },
 

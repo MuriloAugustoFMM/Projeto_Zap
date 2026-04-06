@@ -1,6 +1,23 @@
+function configButtons(card,showModal,deleteTask){
+
+    const btnDel = document.createElement('button');
+    btnDel.id = 'button-del';
+    btnDel.textContent = 'Excluir';
+    btnDel.onclick = () => deleteTask(card.dataset.id);      
+        
+    const btnEdit = document.createElement('button');
+    btnEdit.id = 'button-edit';
+    btnEdit.textContent = 'Editar';
+    btnEdit.onclick = () => showModal(card.dataset.id);
+
+    card.querySelector('.card-footer').appendChild(btnDel);
+    card.querySelector('.card-footer').appendChild(btnEdit);
+    
+}
 
 
-function createCards(tasks,columns){
+
+function createCards(tasks,showModal,deleteTask){
 
     const cards = [];
 
@@ -16,6 +33,8 @@ function createCards(tasks,columns){
         card.setAttribute('data-id', task.id);
         card.setAttribute('data-status', task.status);
 
+        
+
         card.innerHTML = `
             <div class="card">
                 <div class="card-header">
@@ -24,13 +43,12 @@ function createCards(tasks,columns){
                 <div class="card-body">
                     <p>${task.descricao}</p>
                 </div>
-                <div class="card-footer">
-                    <button id="button-del" onclick="delTask(${task.id})">Excluir</button>
-                    <button id="button-edit" onclick="openModalEdit(${task.id})">Editar</button>
-                </div>
+                <div class="card-footer"></div>
             </div>
         `;
 
+        configButtons(card,showModal,deleteTask);
+        
         card.addEventListener('dragstart', (e) =>{
             
             e.dataTransfer.setData('text/plain', task.id)
@@ -49,10 +67,10 @@ function createCards(tasks,columns){
 
 export const uiCard = {
 
-    renderTasks : async (tasks, colunas) => {
+    renderTasks : async (tasks, colunas,showModal,deleteTask) => {
       
         // coleta os cards já formatados
-        const cards = createCards(tasks);
+        const cards = createCards(tasks,showModal,deleteTask);
 
         cards.forEach((card) =>{
             const status = card.dataset.status;

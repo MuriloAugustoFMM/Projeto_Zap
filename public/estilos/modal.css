@@ -39,10 +39,14 @@
     box-shadow: 0 0 10px rgba(0,126,253,0.3); 
 }
 
+.modal-footer{
+    display: flex;
+}
 
 .modal-footer #btn-salvar {
     flex: 1; /* Faz os dois botões terem o mesmo tamanho */
     padding: 10px 5px;
+    margin : 10px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(to bottom, #2af54f 0%, #007efd 100%);
@@ -54,11 +58,13 @@
     box-shadow: 0 4px 10px rgba(0, 158, 253, 0.3);
     transition: all 0.2s ease;
     font-size: 0.8rem;
+    display: none;
 }
 
 .modal-footer #btn-cancelar  {
     flex: 1; /* Faz os dois botões terem o mesmo tamanho */
     padding: 10px 5px;
+    margin : 10px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(to bottom, #f59a2a 0%, #fd0004 100%);
@@ -70,6 +76,24 @@
     box-shadow: 0 4px 10px rgba(0, 158, 253, 0.3);
     transition: all 0.2s ease;
     font-size: 0.8rem;
+    
 }
 
+.modal-footer #btn-enviar{
+    flex: 1; /* Faz os dois botões terem o mesmo tamanho */
+    padding: 10px 5px;
+    margin : 10px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #2af54f 0%, #007efd 100%);
+    color: white;
+    font-weight: 800;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 158, 253, 0.3);
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+    display: none;
+}
 

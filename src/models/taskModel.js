@@ -36,8 +36,24 @@ const taskModel = {
         }
     },
 
+    updateTask: (taskId, titulo='',descricao='') => {
+        try{
+            const response = pool.query(
+                'UPDATE tasks SET titulo = $1, descricao = $2 WHERE id= $3',
+                [titulo,descricao,taskId]
+            );
+        }catch(err){
+            console.log('Erro ao tentar editar task');
+            return;
+        }
+        
+        console.log('Task editada com sucesso');
 
-    updateTask: async (taskId,coluna='titulo',conteudo='#',) => {
+        return 'sucesso';
+    },
+
+
+    updateCampo: async (taskId,coluna='titulo',conteudo='#',) => {
         // Atualiza uma task specifica
         const colunasPermitidas = ['titulo','descricao'];
 

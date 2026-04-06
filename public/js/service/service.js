@@ -27,7 +27,7 @@ export const taskService ={
         
     },
 
-    updateTask: async (taskId,campo,conteudo) => {
+    updateTask: async (taskId,titulo='',descricao='') => {
 
         try{
 
@@ -35,7 +35,7 @@ export const taskService ={
                 method: 'put',
                 headers: {'Content-type' : 'application/json'},
 
-                body: JSON.stringify({campo,conteudo})
+                body: JSON.stringify({titulo,descricao})
             });
 
             console.log('Task editada com sucesso');
@@ -84,7 +84,7 @@ export const taskService ={
     deleteTask: async (taskId) => {
        
         try{
-            const response = await fetch(`${API_URL}`, {method: 'delete'})
+            const response = await fetch(`${API_URL}/${taskId}`, {method: 'delete'})
                 
         } catch(err){
             console.log(err);
