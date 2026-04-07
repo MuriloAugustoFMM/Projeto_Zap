@@ -1,0 +1,5 @@
+{
+    "github.copilot.chat.backgroundAgent.enabled": false,
+    "github.copilot.chat.claudeAgent.enabled": false,
+    "github.copilot.chat.codeGeneration.useInstructionFiles": false
+}

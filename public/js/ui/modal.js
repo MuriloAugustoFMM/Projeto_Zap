@@ -5,7 +5,8 @@ const el = {
    sendButton: document.getElementById('btn-enviar'),
    addButton: document.getElementById('add-button'),
    titleInput: document.getElementById('task-titulo'),
-   descInput: document.getElementById('task-descricao')
+   descInput: document.getElementById('task-descricao'),
+   taskIdInput: document.getElementById('task-id')
 
 };
 
@@ -13,33 +14,31 @@ const el = {
 export function setModalFuncs(editarFunc,criarFunc){
 
    el.cancelButton.onclick = () => closeModal();
-   el.saveButton.onclick = () => editarFunc();
+   el.saveButton.onclick = () => editarFunc(el.taskIdInput.value, el.titleInput.value, el.descInput.value, closeModal);
    el.sendButton.onclick = () => criarFunc(el.titleInput.value,el.descInput.value,closeModal);
    el.addButton.onclick = () => showModal();
 }
 
 
-export function showModal(taskId=''){
+export function showModal(taskId='',titulo='',descricao=''){
    
    console.log(`mostrando o modal ${taskId}`)
 
    // selecionar os botões de acordo com qual elemento chamou o modal
    if(taskId){
       el.saveButton.style = 'display: inline;'
+      el.taskIdInput.value = taskId;
+      el.titleInput.value = titulo;
+      el.descInput.value = descricao;
    }else{
       el.sendButton.style = 'display: inline;'
+      el.titleInput.value = '';
+      el.descInput.value = '';
    }
-
-   //limpar os campos
-   el.titleInput.value = '';
-   el.descInput.value = '';
+   
 
    el.self.style = 'display: flex;';
    
-
-
-
-
 }
 
 function closeModal(){

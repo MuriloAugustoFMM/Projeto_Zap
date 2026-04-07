@@ -42,14 +42,13 @@ const taskModel = {
                 'UPDATE tasks SET titulo = $1, descricao = $2 WHERE id= $3',
                 [titulo,descricao,taskId]
             );
+
+            return 'sucesso';
         }catch(err){
             console.log('Erro ao tentar editar task');
             return;
         }
         
-        console.log('Task editada com sucesso');
-
-        return 'sucesso';
     },
 
 

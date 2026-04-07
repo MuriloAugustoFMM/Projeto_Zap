@@ -30,18 +30,20 @@ export const taskService ={
     updateTask: async (taskId,titulo='',descricao='') => {
 
         try{
-
+            
             const response = await fetch(`${API_URL}/${taskId}`, {
-                method: 'put',
+                method: 'PUT',
                 headers: {'Content-type' : 'application/json'},
 
-                body: JSON.stringify({titulo,descricao})
+                body: JSON.stringify({titulo : String(titulo),descricao : String(descricao)})
             });
 
-            console.log('Task editada com sucesso');
+            if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
 
+            return await response.json();
         } catch(err){
             console.log(err);
+            throw err;     
         }
         
     },

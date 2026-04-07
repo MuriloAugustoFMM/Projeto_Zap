@@ -50,11 +50,11 @@ const taskController = {
             const descricao = req.body.descricao;
             const result = await taskModel.updateTask(taskId,titulo,descricao);
             
+
+            return res.json(result);
         } catch(err){
             return res.status(500).json({error: 'erro ao tentar atualizar task'})
         }
-        console.log('Task atualizada com sucesso');
-        return 'sucesso';
 
 
     },

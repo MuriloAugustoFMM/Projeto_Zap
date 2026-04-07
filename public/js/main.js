@@ -20,7 +20,7 @@ export async function moverTask(taskId,status){
 async function createNewTask(titulo='titulo',descricao='descricao',closeModal){
 
     try{
-        const response = await taskService.createTask(titulo,descricao);
+        taskService.createTask(titulo,descricao);
         
     }catch(err){
         console.log('Erro ao tentar criar task');
@@ -29,19 +29,24 @@ async function createNewTask(titulo='titulo',descricao='descricao',closeModal){
     console.log('Task criada com sucesso');
     closeModal();
     renderizarCards();
+    return;
    
 }
 
-async function editCard(taskId,titulo='',descricao=''){
+async function editCard(taskId,titulo='',descricao='',closeModal){
     
     try{
         const response = await taskService.updateTask(taskId,titulo,descricao);
-
+        
     }catch(err){
         console.log('Erro ao tentar atualizar task');
+        return;
     }
 
     console.log('Task atualizada com sucesso');
+
+    closeModal();
+    renderizarCards();
     return;
 
 }
